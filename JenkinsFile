@@ -1,0 +1,11 @@
+pipeline{
+    agent any
+    
+    stages{
+        stage("Initial Check"){
+            steps{
+                echo "This is the Initial Jenkins File for checking"
+            }
+        }
+    }
+}
