@@ -5,7 +5,7 @@ pipeline{
         stage("Initial Check"){
             input{
                 message "How Are You?"
-                Ok "I am good"
+                ok "I am good"
                 Abort "I dont want to do this"
             }
             steps{
