@@ -6,7 +6,6 @@ pipeline{
             input{
                 message "How Are You?"
                 ok "I am good"
-                Abort "I dont want to do this"
             }
             steps{
                 echo "This is the Initial Jenkins File for checking"
