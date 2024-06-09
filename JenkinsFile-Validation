@@ -36,11 +36,6 @@ node {
     ])
     ])
 
-    environment{
-        GIT_CREDENTIALS_ID = 'git-milind'
-        GIT_REPO_URL = 'https://github.com/MilindMiddha09/Jenkins-Jira-Validation.git'
-    }
-
     stage('Print Values'){
         sh "echo Environment : $envnt"
         sh "echo Application ID :$applicationID "
@@ -52,8 +47,8 @@ node {
     stage('Clone Repository') {
         checkout scmGit(branches: [[name: '*/dev']],
         userRemoteConfigs: [
-        [ credentialsId: env.GIT_CREDENTIALS_ID ,
-        url: env.GIT_REPO_URL ]
+        [ credentialsId: 'git-milind' ,
+        url: 'https://github.com/MilindMiddha09/Jenkins-Jira-Validation.git']
         ])
     }
 
