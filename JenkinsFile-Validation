@@ -34,7 +34,7 @@ node {
 
     ]
     ])
-    )]
+    ])
 
     stage('Print Values'){
          steps {
