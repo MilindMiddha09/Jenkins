@@ -50,13 +50,11 @@ node {
     }
 
     stage('Clone Repository') {
-        script {
-            checkout scmGit(branches: [[name: '*/dev']],
-            userRemoteConfigs: [
-            [ credentialsId: env.GIT_CREDENTIALS_ID ,
-            url: env.GIT_REPO_URL ]
-            ])
-        }
+        checkout scmGit(branches: [[name: '*/dev']],
+        userRemoteConfigs: [
+        [ credentialsId: env.GIT_CREDENTIALS_ID ,
+        url: env.GIT_REPO_URL ]
+        ])
     }
 
     stage("Validating the Input"){
