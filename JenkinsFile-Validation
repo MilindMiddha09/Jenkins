@@ -1,0 +1,75 @@
+node {
+ properties([
+  pipelineTriggers([
+   [$class: 'GenericTrigger',
+    genericVariables: [
+     [
+      key: 'applicationID',
+      value: '$.applicationID',
+      expressionType: 'JSONPath'
+     ],
+     [
+      key: 'envnt',
+      value: '$.envnt',
+      expressionType: 'JSONPath'
+     ],
+     [
+      key: 'region',
+      value: '$.region',
+      expressionType: 'JSONPath'
+     ],
+     [
+      key: 'issueKey',
+      value: '$.issueKey',
+      expressionType: 'JSONPath'
+     ],
+     [
+      key: 'version',
+      value: '$.version',
+      expressionType: 'JSONPath'
+     ]
+    ],
+
+    token: 'validate-deployment-pipeline',
+
+    ]
+    ])
+    )]
+
+    stage('Print Values'){
+         steps {
+            sh "echo Environment : $envnt"
+            sh "echo Application ID :$applicationID "
+            sh "echo Version :$version"
+            sh "echo Region :$region"
+            sh "echo JIRA Task ID$issueKey"
+        }
+    }
+
+    stage('Clone Repository') {
+        steps {
+             script {
+                checkout scmGit(branches: [[name: '*/dev']],
+                userRemoteConfigs: [
+                [ credentialsId: env.GIT_CREDENTIALS_ID ,
+                url: env.GIT_REPO_URL ]
+                ])
+            }
+        }
+    }
+
+    stage("Validating the Input"){
+         steps{
+            withCredentials([string(credentialsId: 'jira-cred-milind-token', variable: 'my_jira_token')]){
+                sh 'pip install Jira'
+                sh 'python3 run.py "$envnt" "$applicationID" "$version" "$region" "$issueKey" '
+            }
+         }
+    }
+
+    stage("Build Deployment Job"){
+        steps{
+            build job: 'Production AKS Deployment', parameters: [string(name: 'environment', value: "$envnt"), string(name: 'applicationID', value: "$applicationID"), string(name: 'version', value: "$version"), string(name: 'region', value: "$region"), string(name: 'issueKey', value: "$issueKey")]
+        }
+    }
+}
