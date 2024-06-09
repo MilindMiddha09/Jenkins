@@ -37,7 +37,7 @@ node {
     ])
 
     environment{
-        GIT_CREDENTIALS_ID = 'git-milind',
+        GIT_CREDENTIALS_ID = 'git-milind'
         GIT_REPO_URL = 'https://github.com/MilindMiddha09/Jenkins-Jira-Validation.git'
     }
 
