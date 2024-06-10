@@ -5,7 +5,7 @@ node{
             string(name: 'applicationID'),
             string(name: 'version'),
             string(name: 'region'),
-            string(name: 'issueKey)
+            string(name: 'issueKey')
         ])
     ])
 
