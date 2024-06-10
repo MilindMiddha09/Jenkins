@@ -1,0 +1,15 @@
+node{
+    properties([
+        parameters([
+            string(name: 'environment'),
+            string(name: 'applicationID'),
+            string(name: 'version'),
+            string(name: 'region'),
+            string(name: 'issueKey')
+        ])
+    ])
+
+    stage("Roll back"){
+        echo "Rolling Back in $region region"
+    }
+}
