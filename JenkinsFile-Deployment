@@ -16,18 +16,18 @@ node{
         url: 'https://github.com/MilindMiddha09/Jenkins-Jira-Validation.git']
         ])
     }
+
     stage("Deployment Started."){
-        steps{
-            sh "echo $issueKey"
-            sh "echo $environment"
-            sh "echo $applicationID"
-            sh "echo $version"
-            sh "echo $region"
+        sh "echo $issueKey"
+        sh "echo $environment"
+        sh "echo $applicationID"
+        sh "echo $version"
+        sh "echo $region"
     }
 
     stage("Add Comment to Jira Issue"){
-        steps{
-            withCredentials([string(credentialsId: 'jira-cred-milind-token', variable: 'my_jira_token')]){
-            sh 'python3 AddCommentAfterDeployment.py "$issueKey" "$region" '
-        }
+        withCredentials([string(credentialsId: 'jira-cred-milind-token', variable: 'my_jira_token')]){
+        sh 'python3 AddCommentAfterDeployment.py "$issueKey" "$region" '
     }
+
+}
