@@ -8,7 +8,7 @@ node{
               value: '$.region',
               expressionType: 'JSONPath'
              ]
-             ]
+             ],
 
              token = 'rollback-deployment'
              ]
