@@ -9,6 +9,8 @@ node{
               expressionType: 'JSONPath'
              ]
              ]
+
+             token = 'rollback-deployment'
              ]
         ])
     ])
