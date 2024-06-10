@@ -28,6 +28,6 @@ node{
     stage("Add Comment to Jira Issue"){
         withCredentials([string(credentialsId: 'jira-cred-milind-token', variable: 'my_jira_token')]){
         sh 'python3 AddCommentAfterDeployment.py "$issueKey" "$region" '
+        }
     }
-
 }
