@@ -10,7 +10,7 @@ node{
              ]
              ],
 
-             token = 'rollback-deployment'
+             token: 'rollback-deployment'
              ]
         ])
     ])
