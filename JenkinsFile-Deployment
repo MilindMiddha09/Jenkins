@@ -5,18 +5,17 @@ node{
             string(name: 'applicationID'),
             string(name: 'version'),
             string(name: 'region'),
-            string(name: 'issueKey')
+            string(name: 'issueKey)
         ])
     ])
 
     stage('Clone Repository') {
-        checkout scmGit(branches: [[name: '*/dev']]
-            userRemoteConfigs: [
-                [ credentialsId: 'git-milind' ,
-                    url: 'https://github.com/MilindMiddha09/Jenkins-Jira-Validation.git' ]
-                ])
+        checkout scmGit(branches: [[name: '*/dev']],
+        userRemoteConfigs: [
+        [ credentialsId: 'git-milind' ,
+        url: 'https://github.com/MilindMiddha09/Jenkins-Jira-Validation.git']
+        ])
     }
-
     stage("Deployment Started."){
         steps{
             sh "echo $issueKey"
