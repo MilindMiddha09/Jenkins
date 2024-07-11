@@ -54,7 +54,7 @@ node {
 
     stage("Validating the Input"){
         withCredentials([string(credentialsId: 'jira-cred-milind-token', variable: 'my_jira_token')]){
-            withCredentials([string(credentialsId: 'slack-bot-token', variable: 'slack-token')]){
+            withCredentials([string(credentialsId: 'slack-bot-token', variable: 'slack_token')]){
                 sh 'pip install Jira'
                 sh 'pip install slack_sdk'
                 sh 'python3 run.py "$envnt" "$applicationID" "$version" "$region" "$issueKey" '
